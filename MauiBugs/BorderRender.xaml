@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiBugs.ViewModels"
+             x:DataType="viewModels:BorderRenderViewModel"
+             x:Class="MauiBugs.BorderRender">
+    <Grid RowDefinitions="*"
+          ColumnDefinitions="*">
+        <CollectionView Grid.Row="0"
+                        Grid.Column="0"
+                        ItemsSource="{Binding BorderRenderList.Value}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:BorderRenderDto">
+                    <Grid RowDefinitions="18,auto,auto,17,1"
+                          ColumnDefinitions="5,*,auto,5"
+                          ColumnSpacing="10"
+                          BackgroundColor="#FFFFFF">
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Name}"
+                               LineHeight="1.1"
+                               TextColor="#111111"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               MaxLines="2"
+                               HorizontalOptions="Start"/>
+                        <!-- TODO:render error on ios  -->
+                        <Border IsVisible="{Binding IsFinished}"
+                                Grid.Row="1"
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                Padding="5, 2"
+                                BackgroundColor="#0098A5"
+                                MaximumHeightRequest="30"
+                                StrokeShape="{RoundRectangle CornerRadius='2'}"
+                                StrokeThickness="0"
+                                Margin="0, 2, 0, 0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Start">
+                            <Grid RowDefinitions="*"
+                                  ColumnDefinitions="*">
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="解決"
+                                       TextColor="#FFFFFF"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="Content"
+                               TextColor="#666666"
+                               FontSize="14"
+                               MaxLines="2"
+                               LineBreakMode="TailTruncation"
+                               LineHeight="1.2"
+                               Margin="0, 5, 0, 0"/>
+                        <BoxView Grid.Row="5"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="4"
+                                 BackgroundColor="#DBDBE7"
+                                 HeightRequest="1"
+                                 VerticalOptions="End"
+                                 HorizontalOptions="Fill"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

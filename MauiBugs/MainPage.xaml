@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiBugs.ViewModels"
+             x:DataType="viewModels:MainPageViewModel"
+             x:Name="MainPageViewModel"
+             x:Class="MauiBugs.MainPage">
+    <Grid RowDefinitions="*"
+          ColumnDefinitions="*">
+        <CollectionView ItemsSource="{Binding BugPages.Value}">
+            <CollectionView.Header>
+                <Label Text="Maui Bugs"
+                       HeightRequest="40"
+                       Padding="15,20"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="Pink"/>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:BugPage">
+                    <Grid RowDefinitions="*"
+                          ColumnDefinitions="*">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference MainPageViewModel},Path=BindingContext.TapCommand}"
+                                                  CommandParameter="{Binding Name}"/>
+                        </Grid.GestureRecognizers>
+                        <Border Grid.Row="1"
+                                Grid.Column="1"
+                                HeightRequest="40"
+                                WidthRequest="200"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                StrokeShape="{RoundRectangle CornerRadius='20'}"
+                                BackgroundColor="Pink">
+                            <Label HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                   <FormattedString>
+                                        <Span Text="{Binding Name}" />
+                                        <Span Text="　" />
+                                        <Span Text="{Binding BugId}" />
+                                   </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
