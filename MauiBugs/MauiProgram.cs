@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using DotNet.Meteor.HotReload.Plugin;
 
 namespace MauiBugs;
 
@@ -9,6 +10,9 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+#if DEBUG
+            .EnableHotReload()
+#endif
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
