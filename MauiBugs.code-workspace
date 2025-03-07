@@ -1,0 +1,46 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "dotnet.defaultSolution": "MauiBugs.sln"
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dotnettools.vscode-dotnet-runtime",
+            "ms-dotnettools.dotnet-maui",
+            "nromanov.dotnet-meteor",
+            "ms-dotnettools.csharp",
+            "ms-dotnettools.csdevkit",
+            "visualstudioexptteam.vscodeintellicode",
+            "visualstudioexptteam.intellicode-api-usage-examples",
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": ".NET Meteor Debugger",
+                "type": "dotnet-meteor.debugger",
+                "request": "launch",
+                "preLaunchTask": "dotnet-meteor: Build"
+            }
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "type": "dotnet-meteor.task",
+                "target": "build",
+                "problemMatcher": [
+                    "$dotnet-meteor.problemMatcher"
+                ],
+                "label": "dotnet-meteor: Build",
+                "group": "build",
+            }
+        ]
+    },
+}
