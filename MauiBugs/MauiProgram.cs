@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using DotNet.Meteor.HotReload.Plugin;
+//using CommunityToolkit.Maui;
 
 namespace MauiBugs;
 
@@ -10,6 +11,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			//.UseMauiCommunityToolkit()
 #if DEBUG
             .EnableHotReload()
 #endif

@@ -1,24 +1,38 @@
-﻿namespace MauiBugs;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace MauiBugs;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+	private MainPageViewModel _vm;
 
 	public MainPage()
 	{
 		InitializeComponent();
+
+        _vm = new MainPageViewModel
+        {
+            ShowCollectionView = false
+        };
+        BindingContext = _vm;
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private void Button_Clicked(object sender, EventArgs e)
 	{
-		count++;
+		if (!_vm.ShowCollectionView)
+		{
+			_vm.Items = new List<string> { "Item 1", "Item 2", "Item 3" };
+		}
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		_vm.ShowCollectionView = !_vm.ShowCollectionView;
 	}
 }
 
+public partial class MainPageViewModel : ObservableObject
+{
+	[ObservableProperty]
+	private List<string>? _items;
+
+	[ObservableProperty]
+	public bool _showCollectionView;
+}

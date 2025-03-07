@@ -39,6 +39,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+		<!-- Enable this when you want to edit the Compiler Generated Files -->
+		<!-- https://github.com/dotnet/maui/discussions/26145#discussioncomment-11392574 -->
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -60,8 +64,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<!-- <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" /> -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.*" />
+
+		<!-- <PackageReference Include="CommunityToolkit.Maui" Version="11.1.0" /> -->
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+
+		<!-- <ProjectReference Include="..\..\..\Practice\my_maui\src\Controls\src\Core\Controls.Core.csproj" />
+		<ProjectReference Include="..\..\..\Practice\my_maui\src\Core\src\Core.csproj" />
+		<ProjectReference Include="..\..\..\Practice\my_maui\src\Controls\src\Xaml\Controls.Xaml.csproj" />
+		<ProjectReference Include="..\..\..\Practice\my_maui\src\Graphics\src\Graphics\Graphics.csproj" />
+		<ProjectReference Include="..\..\..\Practice\my_maui\src\Compatibility\Core\src\Compatibility.csproj" />
+		<ProjectReference Include="..\..\..\Practice\my_maui\src\Essentials\src\Essentials.csproj" /> -->
 	</ItemGroup>
 
 	<ItemGroup>
